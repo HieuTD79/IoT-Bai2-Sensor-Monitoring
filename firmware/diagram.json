@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -43.3, "left": -81.8, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -42, "left": 32.6, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 24, "left": 47.45, "rotate": 90, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -143.7,
+      "left": 90.6,
+      "attrs": { "temperature": "28.8", "humidity": "58" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": 116.7,
+      "left": 178.3,
+      "attrs": { "distance": "123" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "led1:C", "black", [ "h0" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "esp:D2", "green", [ "h0", "v38" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v211.2", "h-86.1" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v220.8", "h-114.9" ] ],
+    [ "dht1:SDA", "esp:D15", "blue", [ "v0" ] ],
+    [ "ultrasonic1:VCC", "esp:VIN", "red", [ "v124.8", "h-355.2" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v153.6", "h-385.2" ] ],
+    [ "ultrasonic1:TRIG", "esp:D5", "orange", [ "v19.2", "h-240.1" ] ],
+    [ "ultrasonic1:ECHO", "esp:D18", "yellow", [ "v48", "h-250.1" ] ]
+  ],
+  "dependencies": {}
+}
